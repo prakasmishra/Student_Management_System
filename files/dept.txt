@@ -1,0 +1,1 @@
+[{"name":"CSE","dept_code":1000},{"name":"ETCE","dept_code":1001},{"name":"IT","dept_code":1002},{"name":"EE","dept_code":1003},{"name":"ME","dept_code":1004}]

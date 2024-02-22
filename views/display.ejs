@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display</title>
+</head>
+<body>
+    <h3>Student Data for <%= deptCheck %> department :</h3>
+    <div id="studentData">
+        <!-- This div will contain the student data -->
+    </div>
+    <button id="previousBtn" onclick="previous()">Prev</button>
+    <button id="nextBtn" onclick="next()">Next</button>
+
+    <script type="text/javascript">
+        
+
+        let index = 0;
+        let c=0;
+
+        let stack = [];
+
+        function updateButtonStatus() {
+            const studentsArray = '<%- JSON.stringify(studentsArray) %>';
+            const students=JSON.parse(studentsArray); 
+            const previousBtn = document.getElementById('previousBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            previousBtn.disabled = c===0; // Disable "Previous" button when at or before the starting 5 data
+            nextBtn.disabled = index >= students.length; // Disable "Next" button when at or after the last 5 data
+        }
+
+        function displayStudents(i) {
+            stack.push(i);
+            const studentsArray = '<%- JSON.stringify(studentsArray) %>';
+            const students=JSON.parse(studentsArray); 
+            const d='<%= deptCheck %>';
+            // console.log(d);
+            let count = 0;
+            const studentDataDiv = document.getElementById('studentData');
+            studentDataDiv.innerHTML = ''; // Clear previous content
+            while(count<5 && i<students.length){
+                if(students[i].dept === d)
+                {
+                    count++;
+                    const studentParagraph = document.createElement('p');
+                    studentParagraph.textContent = JSON.stringify(students[i]);
+                    studentDataDiv.appendChild(studentParagraph);
+                }
+                i++;
+            }
+            // console.log(i);
+            index=i;
+            updateButtonStatus();
+        }
+
+        function next() {
+            c++;
+            displayStudents(index);
+            console.log(index);
+        }
+        
+        function previous() {
+            c--;
+            const h=stack.pop();
+            index=stack.pop();
+            displayStudents(index);
+        }
+
+        // Initial display
+        displayStudents(index);
+        updateButtonStatus();
+        console.log(index);
+    </script>
+</body>
+</html>

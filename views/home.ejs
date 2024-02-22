@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+</head>
+<body>
+        <form action="/add" method="get">
+            <h2>Welcome to Records</h2>
+            <label for="addHere">Add a record here :</label>
+            <input type="submit" name="addHere" value="Add">
+        </form>
+        <br>
+        <form action="/search" method="post">
+            <input type="text" placeholder="Enter roll" name="roll" id="searchRoll">
+            <input type="submit" value="Search">
+        </form>
+        <br>
+        <form action="/edit" method="post">
+            <input type="text" placeholder="Enter roll" name="editRoll" id="editRoll">
+            <input type="submit" value="Edit">
+        </form>
+        <br> <form action="/delete" method="post">
+            <input type="text" placeholder="Enter roll" name="deleteRoll" id="deleteRoll">
+            <input type="submit" value="Delete">
+        </form>
+        <br>
+        <form action="/display" method="post">
+            <label for="departmentSelect">Select a Department:</label>
+            <select id="departmentSelect" name="selectedDepartment">
+            <% departments.forEach(department => { %>
+                <option value="<%= department.name %>"><%= department.name %></option>
+            <% }); %>
+            </select>
+            <input type="submit" value="Display Records">
+        </form>
+</body>
+</html>

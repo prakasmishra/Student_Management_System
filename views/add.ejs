@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add</title>
+</head>
+<body>
+    <h2>Add a Student </h2>
+    <br>
+    <form action="/addStudent" method="post">
+        <label for="name">Enter Name:</label>
+        <input type="text" name="name" placeholder="Your Name">
+        <label for="departmentSelect">Select a Department:</label>
+        <select id="departmentSelect" name="selectedDepartment">
+        <% departments.forEach(department => { %>
+            <option value="<%= department.name %>"><%= department.name %></option>
+        <% }); %>
+        </select>
+        <input type="submit" value="Add yourself">
+    </form>
+    <input type="submit" onclick="cancelForm()" value="Cancel">
+    <script>
+        function cancelForm(){
+            window.location.href="http://localhost:3000";
+        }
+    </script>
+</body>
+</html>
