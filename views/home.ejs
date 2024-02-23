@@ -4,36 +4,87 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            width: 20%;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        h2 {
+            margin-top: 0;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        input[type="text"], input[type="submit"], select {
+            width: calc(100% - 22px);
+            padding: 8px; /* Adjusted padding for smaller buttons */
+            margin-bottom: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px; /* Adjusted font size for smaller buttons */
+        }
+        input[type="submit"] {
+            width: auto; /* Set width to auto for button */
+            background-color: #4caf50;
+            color: #fff;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
 </head>
 <body>
+    <div class="container">
         <form action="/add" method="get">
             <h2>Welcome to Records</h2>
             <label for="addHere">Add a record here :</label>
             <input type="submit" name="addHere" value="Add">
         </form>
-        <br>
         <form action="/search" method="post">
-            <input type="text" placeholder="Enter roll" name="roll" id="searchRoll">
+            <label>Search a record here :</label>
+            <input type="text" placeholder="Enter roll" name="roll" id="searchRoll" style="width: calc(100% - 22px);">
             <input type="submit" value="Search">
         </form>
-        <br>
         <form action="/edit" method="post">
-            <input type="text" placeholder="Enter roll" name="editRoll" id="editRoll">
+            <label>Edit a record here :</label>
+            <input type="text" placeholder="Enter roll" name="editRoll" id="editRoll" style="width: calc(100% - 22px);">
             <input type="submit" value="Edit">
         </form>
-        <br> <form action="/delete" method="post">
-            <input type="text" placeholder="Enter roll" name="deleteRoll" id="deleteRoll">
+        <form action="/delete" method="post">
+            <label>Delete a record here :</label>
+            <input type="text" placeholder="Enter roll" name="deleteRoll" id="deleteRoll" style="width: calc(100% - 22px);">
             <input type="submit" value="Delete">
         </form>
-        <br>
         <form action="/display" method="post">
             <label for="departmentSelect">Select a Department:</label>
-            <select id="departmentSelect" name="selectedDepartment">
-            <% departments.forEach(department => { %>
+            <select id="departmentSelect" name="selectedDepartment" style="width: calc(100% - 22px);">
+                <% departments.forEach(department => { %>
                 <option value="<%= department.name %>"><%= department.name %></option>
-            <% }); %>
+                <% }); %>
             </select>
             <input type="submit" value="Display Records">
         </form>
+    </div>
 </body>
 </html>
